@@ -7,7 +7,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 # Import data 
-df = pd.read_csv('2018년소멸위험지수.csv', encoding='cp949')
+df = pd.read_csv('https://raw.githubusercontent.com/mjs1995/Dash_korea/main/2018%EB%85%84%EC%86%8C%EB%A9%B8%EC%9C%84%ED%97%98%EC%A7%80%EC%88%98.csv', encoding='cp949')
 df['sigun_code']=df['sigun_code'].astype(str)
 
 state_geo ='map (7).zip.geojson'
