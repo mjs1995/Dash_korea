@@ -158,19 +158,16 @@ layout.update(updatemenus=list([
 
 fig=go.Figure(data=trace2 + trace1, layout=layout)
 
+
+#####################
 #external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-external_stylesheets = [
-    {
-        "href": "https://fonts.googleapis.com/css2?"
-                "family=Lato:wght@400;700&display=swap",
-        "rel": "stylesheet",
-    },
-]
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 app.title = "한국 지방소멸"
 
+#####################
 app.layout = html.Div(children=[
     html.H1(children='한국 지방자치단체 지방소멸위험',
             style={"fontSize": "48px"},
@@ -180,7 +177,7 @@ app.layout = html.Div(children=[
             children="Analyze the "
             " number of people / Local extinction sold in the Korea"
             " between 2015 and 2018",
-            className="header-description",
+            className="header-description"
         ),
 
     dcc.Graph(
@@ -193,5 +190,7 @@ app.layout = html.Div(children=[
     ''')
 ])
 
+
+#####################
 if __name__ == '__main__':
     app.run_server()
