@@ -7,9 +7,9 @@ import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-server = app.server
+#external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+#app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+#server = app.server
 
 # Import data 
 df = pd.read_csv('https://raw.githubusercontent.com/mjs1995/Dash_korea/main/2018%EB%85%84%EC%86%8C%EB%A9%B8%EC%9C%84%ED%97%98%EC%A7%80%EC%88%98.csv', encoding='cp949')
@@ -170,7 +170,6 @@ fig=go.Figure(data=trace2 + trace1, layout=layout)
 #####################
 #external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 app.title = "한국 지방소멸"
@@ -264,5 +263,5 @@ app.layout = html.Div([
 
 #####################
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()
        
