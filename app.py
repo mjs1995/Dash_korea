@@ -3,12 +3,19 @@ import pandas as pd
 import plotly
 import plotly.graph_objects as go
 import dash
+import dash_table
 import dash_core_components as dcc
 import dash_html_components as html
+
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
 
 # Import data 
 df = pd.read_csv('2018년소멸위험지수.csv', encoding='cp949')
 df['sigun_code']=df['sigun_code'].astype(str)
+
+new_df = df[['sido_nm', 'sigun_nm','소멸위험지수','출생아수','평균연령','종합병원','부동산업_사업체수']]
 
 state_geo ='map (7).zip.geojson'
 state_geo1 = json.load(open(state_geo, encoding='utf-8'))
@@ -24,7 +31,7 @@ for idx, sigun_dict in enumerate(state_geo1['features']):
     state_geo1['features'][idx]['properties']['risk'] = people_w
 
 # mapbox token
-mapbox_accesstoken = 'pk.eyJ1IjoibWpzMTk5NSIsImEiOiJja2pyM3AyZjEwMzZ6MnltdTA4aDc1NjJkIn0.SN28pnAUfydkAeMtp28uMw'
+#mapbox_accesstoken = 
 
 # plotly fig 
 suburbs = df['sigun_nm'].str.title().tolist()
@@ -100,7 +107,8 @@ layout = go.Layout(
     mapbox1 = dict(
         domain = {'x': [0.3, 1],'y': [0, 1]},
         center = dict(lat=latitude, lon=longitude),
-        accesstoken = mapbox_accesstoken, 
+        style="open-street-map",        
+        #accesstoken = mapbox_accesstoken, 
         zoom = 5),
     
     xaxis2={
@@ -168,27 +176,93 @@ server = app.server
 app.title = "한국 지방소멸"
 
 #####################
-app.layout = html.Div(children=[
-    html.H1(children='한국 지방자치단체 지방소멸위험',
-            style={"fontSize": "48px"},
-            className="header-title"
-           ),
-    html.P(
-            children="Analyze the "
-            " number of people / Local extinction sold in the Korea"
-            " between 2015 and 2018",
-            className="header-description"
+app.layout = html.Div([
+    html.Div(children=[
+        html.H1(children='한국 지방자치단체 지방소멸위험',
+                style={"fontSize": "48px"},
+                className="header-title"
+                ),
+        html.P(
+                children="Analyze the "
+                " number of people / Local extinction sold in the Korea"
+                " between 2015 and 2018",
+                className="header-description"
+            ),
+
+        dcc.Graph(
+            id='example-graph-1',
+            figure=fig
         ),
-    dcc.Graph(
-        id='example-graph-1',
-        figure=fig
-    ),
-    html.Div(children='''
-        Data source from https://github.com/mjs1995/yeonsei_project @Oct 2020
-    ''')
-])
+
+        html.Div(children='''
+            Data source from https://github.com/mjs1995/yeonsei_project @Oct 2020
+        ''')]),
+    
+    html.Div([
+        dash_table.DataTable(
+            id='datatable_id',
+            data=new_df.to_dict('records'),
+            columns=[
+                {"name": i, "id": i, "deletable": False, "selectable": False} for i in new_df.columns
+            ],
+            editable=False,
+            filter_action="native",
+            sort_action="native",
+            sort_mode="multi",
+            row_selectable="multi",
+            row_deletable=False,
+            selected_rows=[],
+            page_action="native",
+            page_current= 0,
+            page_size= 6,
+            # page_action='none',
+            # style_cell={
+            # 'whiteSpace': 'normal'
+            # },
+            # fixed_rows={ 'headers': True, 'data': 0 },
+            # virtualization=False,
+            style_cell_conditional=[
+                {
+                    'if': {'column_id': c},
+                    'textAlign': 'left'
+                } for c in ['Date', 'Region']
+            ],
+            style_data_conditional=[
+                {
+                    'if': {'row_index': 'odd'},
+                    'backgroundColor': 'rgb(248, 248, 248)'
+                }
+            ],
+            style_header={
+                'backgroundColor': 'rgb(230, 230, 230)',
+                'fontWeight': 'bold'
+            },
+
+
+#            style_cell_conditional=[
+#                {'if': {'column_id': 'sigun_nm'},
+#                 'width': '40%', 'textAlign': 'left'},
+#                {'if': {'column_id': '소멸위험지수'},
+#                 'width': '30%', 'textAlign': 'left'},
+#                {'if': {'column_id': '출생아수'},
+#                 'width': '30%', 'textAlign': 'left'},
+#            ],
+        ),
+    ],
+            className='row'),    
+    
+    ])
+
+
+
+#@app.callback(
+#    Output('graph','figure'),
+#    [Input('dropdown', 'value')]
+#)
+
 
 
 #####################
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True)
+       
