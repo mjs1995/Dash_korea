@@ -12,7 +12,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
 # Import data 
-df = pd.read_csv('2018년소멸위험지수.csv', encoding='cp949')
+df = pd.read_csv('https://raw.githubusercontent.com/mjs1995/Dash_korea/main/2018%EB%85%84%EC%86%8C%EB%A9%B8%EC%9C%84%ED%97%98%EC%A7%80%EC%88%98.csv', encoding='cp949')
 df['sigun_code']=df['sigun_code'].astype(str)
 
 new_df = df[['sido_nm', 'sigun_nm','소멸위험지수','출생아수','평균연령','종합병원','부동산업_사업체수']]
