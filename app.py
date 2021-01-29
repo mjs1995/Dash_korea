@@ -72,7 +72,7 @@ for Type in Types:
                         "<extra></extra>"))
     
 trace1[0]['visible'] = True
-
+#
 trace2 = []
 
 for Type in Types:
