@@ -34,10 +34,6 @@ Click==7.0
 cloudpickle==1.2.2
 colorama==0.4.1
 comtypes==1.1.7
-conda==4.8.5
-conda-build==3.18.9
-conda-package-handling==1.6.0
-conda-verify==3.4.2
 contextlib2==0.6.0
 cryptography==2.7
 cx-Oracle==8.0.0
