@@ -1,4 +1,3 @@
-# Dash_korea
-지도 시각화 웹 개발 [Link](https://www.youtube.com/watch?v=aTrUG4gFZr8)
+# 지도 시각화 웹 개발 [Link](https://korea-dashboard.herokuapp.com/)
 
-![videoplay](https://media.giphy.com/media/I9f4EclwLKREVBlO1r/giphy.gif)
+![videoplay](https://media.giphy.com/media/sbcUHqHiWaHKQfTG2l/giphy.gif)
