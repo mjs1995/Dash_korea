@@ -69,7 +69,7 @@ trace2 = []
 
 for Type in Types:
     trace2.append(go.Bar(
-        x=df.sort_values([Type], ascending=False).head(10)['소멸위험지수'],
+        x=df.sort_values([Type], ascending=False).head(10)[Type],
         y=df.sort_values([Type], ascending=False).head(10)['sigun_nm'].str.title().tolist(),
         xaxis='x2',
         yaxis='y2',
