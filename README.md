@@ -11,14 +11,14 @@
 
 #### Project boilerplate
 
-    apps
+    📂 apps
     ├── ...
-    ├── Dash_korea              # app project
-    │   ├── .gitignore          # Backup File, Log File
-    │   ├── data                # data(2018소멸위험지수.csv / map (7).zip.geojson)
-    │   ├── app.py              # dash application
-    │   ├── Procfile            # used for heroku deployment 
-    │   ├── requirements.txt    # project dependecies
+    ├── 📂 Dash_korea              # app project
+    │   ├── 📄 .gitignore          # Backup File, Log File
+    │   ├── 📄 data                # data(2018소멸위험지수.csv / map (7).zip.geojson)
+    │   ├── 📄 app.py              # dash application
+    │   ├── 📄 Procfile            # used for heroku deployment 
+    │   ├── 📄 requirements.txt    # project dependecies
     │   └── ...                 
     └── ...
 
